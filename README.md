@@ -38,6 +38,14 @@ Conform to Material Design
 - Present the URL for the public GitHub Respository
 - Let us know if you want to submit in a different format（We would like to see your Git Commits）
 
+## Packages
+
+- [Flutter_svg 2.0.9](https://pub.dev/packages/flutter_svg)
+
+## Credits
+
+- [DevIcon](https://github.com/devicons/devicon/): GitHub Icon used for App bar
+
 ## Evaluation
 
 - Review Difficulty
