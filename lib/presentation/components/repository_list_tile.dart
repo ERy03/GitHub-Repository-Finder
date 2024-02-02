@@ -46,9 +46,11 @@ class RepositoryListTile extends StatelessWidget {
                       )
                     ],
                   ),
+
                   const SizedBox(
                     height: 5,
                   ),
+
                   // repository title
                   // TODO replace hardcoded text with actual repo title
                   const Text(
@@ -56,9 +58,19 @@ class RepositoryListTile extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  )
+                  ),
+
+                  const SizedBox(
+                    height: 5,
+                  ),
 
                   // repository description
+                  // TODO replace hardcoded text with actual repo description
+                  // * Description can be null
+                  const Text(
+                    "This is the description for the respository. It can be quite long or short. If there is no description, do not show",
+                    style: TextStyle(fontSize: 16),
+                  ),
 
                   // number of stars and programming language
                 ],
