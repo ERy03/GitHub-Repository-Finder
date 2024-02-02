@@ -12,11 +12,9 @@ class RepositoryListTile extends StatelessWidget {
         child: SafeArea(
           top: false,
           bottom: false,
-          child: Container(
-            color: Colors.yellow,
+          child: SizedBox(
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.grey,
                   border: Border(
                       bottom: BorderSide(
                           color: Theme.of(context).dividerColor, width: 1))),
@@ -72,7 +70,48 @@ class RepositoryListTile extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
 
+                  const SizedBox(
+                    height: 5,
+                  ),
+
                   // number of stars and programming language
+                  Row(
+                    children: <Widget>[
+                      // Stars
+                      const Icon(
+                        Icons.star_outline,
+                        size: 18,
+                      ),
+                      const SizedBox(
+                        width: 3,
+                      ),
+                      // TODO Replace hardcoded star number with actual number
+                      const Text(
+                        "30",
+                        style: TextStyle(fontSize: 18),
+                      ),
+
+                      const SizedBox(
+                        width: 15,
+                      ),
+
+                      // Programming Language
+                      Container(
+                        height: 18,
+                        width: 18,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.blue),
+                      ),
+                      const SizedBox(
+                        width: 3,
+                      ),
+                      // TODO Replace hardcoded Programming Language with actual Programming Language
+                      const Text(
+                        "Dart",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
