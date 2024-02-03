@@ -19,11 +19,12 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 16),
       child: SafeArea(
         top: false,
         bottom: false,
         child: SearchBar(
+          elevation: MaterialStateProperty.all(1),
           controller: _controller,
           padding: const MaterialStatePropertyAll<EdgeInsets>(
               EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
