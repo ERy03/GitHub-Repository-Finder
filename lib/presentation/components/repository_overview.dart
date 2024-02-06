@@ -27,7 +27,7 @@ class RepositoryOverview extends StatelessWidget {
               : BoxDecoration(
                   border: Border(
                       bottom: BorderSide(
-                          color: Theme.of(context).dividerColor, width: 1))),
+                          color: Theme.of(context).dividerColor, width: 0))),
           margin: const EdgeInsets.only(left: 16),
           padding: const EdgeInsets.only(top: 16, bottom: 16, right: 16),
           child: Column(
