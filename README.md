@@ -41,6 +41,7 @@ Conform to Material Design
 ## Packages
 
 - [Flutter_svg 2.0.9](https://pub.dev/packages/flutter_svg)
+- [intl ^0.19.0](https://pub.dev/packages/intl)
 
 ## Credits
 
