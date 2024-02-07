@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:github_repository_finder/models/github_repository_model.dart';
+import 'package:github_repository_finder/domain/github_repository_model.dart';
 
 class GitHubRepositoryResponseModel {
   const GitHubRepositoryResponseModel({
