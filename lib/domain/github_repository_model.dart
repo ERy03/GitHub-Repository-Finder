@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:github_repository_finder/domain/github_repository_license.dart';
 import 'package:github_repository_finder/domain/github_repository_owner.dart';
 
 class GitHubRepositoryModel {
@@ -8,25 +9,27 @@ class GitHubRepositoryModel {
     required this.name,
     this.description,
     required this.htmlUrl,
-    this.homepage,
+    required this.homepage,
     required this.stargazersCount,
     required this.watchersCount,
     this.language,
     required this.forksCount,
     required this.openIssuesCount,
     required this.owner,
+    this.license,
   });
 
   final String name;
   final String? description;
   final String htmlUrl;
-  final String? homepage;
+  final String homepage;
   final int stargazersCount;
   final int watchersCount;
   final String? language;
   final int forksCount;
   final int openIssuesCount;
   final RepositoryOwner owner;
+  final RepositoryLicense? license;
 
   GitHubRepositoryModel copyWith({
     String? name,
@@ -39,6 +42,7 @@ class GitHubRepositoryModel {
     int? forksCount,
     int? openIssuesCount,
     RepositoryOwner? owner,
+    RepositoryLicense? license,
   }) {
     return GitHubRepositoryModel(
       name: name ?? this.name,
@@ -51,6 +55,7 @@ class GitHubRepositoryModel {
       forksCount: forksCount ?? this.forksCount,
       openIssuesCount: openIssuesCount ?? this.openIssuesCount,
       owner: owner ?? this.owner,
+      license: license ?? this.license,
     );
   }
 
@@ -66,6 +71,7 @@ class GitHubRepositoryModel {
       'forks_count': forksCount,
       'open_issues_count': openIssuesCount,
       'owner': owner.toMap(),
+      'license': license?.toMap(),
     };
   }
 
@@ -75,13 +81,16 @@ class GitHubRepositoryModel {
       description:
           map['description'] != null ? map['description'] as String : null,
       htmlUrl: map['html_url'] as String,
-      homepage: map['homepage'] != null ? map['homepage'] as String : null,
+      homepage: map['homepage'] as String,
       stargazersCount: map['stargazers_count'] as int,
       watchersCount: map['watchers_count'] as int,
       language: map['language'] != null ? map['language'] as String : null,
       forksCount: map['forks_count'] as int,
       openIssuesCount: map['open_issues_count'] as int,
       owner: RepositoryOwner.fromMap(map['owner'] as Map<String, dynamic>),
+      license: map['license'] != null
+          ? RepositoryLicense.fromMap(map['license'] as Map<String, dynamic>)
+          : null,
     );
   }
 
@@ -93,7 +102,7 @@ class GitHubRepositoryModel {
 
   @override
   String toString() {
-    return 'GitHubRepositoryModel(name: $name, description: $description, html_url: $htmlUrl, homepage: $homepage, stargazers_count: $stargazersCount, watchers_count: $watchersCount, language: $language, forks_count: $forksCount, open_issues_count: $openIssuesCount, owner: $owner)';
+    return 'GitHubRepositoryModel(name: $name, description: $description, html_url: $htmlUrl, homepage: $homepage, stargazers_count: $stargazersCount, watchers_count: $watchersCount, language: $language, forks_count: $forksCount, open_issues_count: $openIssuesCount, owner: $owner, license: $license)';
   }
 
   @override
@@ -109,7 +118,8 @@ class GitHubRepositoryModel {
         other.language == language &&
         other.forksCount == forksCount &&
         other.openIssuesCount == openIssuesCount &&
-        other.owner == owner;
+        other.owner == owner &&
+        other.license == license;
   }
 
   @override
@@ -123,6 +133,7 @@ class GitHubRepositoryModel {
         language.hashCode ^
         forksCount.hashCode ^
         openIssuesCount.hashCode ^
-        owner.hashCode;
+        owner.hashCode ^
+        license.hashCode;
   }
 }
