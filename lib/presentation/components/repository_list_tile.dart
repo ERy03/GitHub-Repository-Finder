@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:github_repository_finder/domain/github_repository_model.dart';
 import 'package:github_repository_finder/presentation/components/repository_overview.dart';
 import 'package:github_repository_finder/presentation/screens/repository_detail_screen.dart';
 
 class RepositoryListTile extends StatelessWidget {
-  const RepositoryListTile({super.key});
+  const RepositoryListTile({super.key, required this.gitHubRepositoryModel});
+
+  final GitHubRepositoryModel gitHubRepositoryModel;
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +15,13 @@ class RepositoryListTile extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const RepositoryDetailScreen()),
+                builder: (context) => RepositoryDetailScreen(
+                      gitHubRepositoryModel: gitHubRepositoryModel,
+                    )),
           );
-          // TODO navigate to details page
         },
-        child: const RepositoryOverview());
+        child: RepositoryOverview(
+          gitHubRepositoryModel: gitHubRepositoryModel,
+        ));
   }
 }
