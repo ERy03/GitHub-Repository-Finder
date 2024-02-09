@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CustomSearchBar extends StatefulWidget {
+final gitHubRepositroySearchTextProvider = StateProvider<String>((ref) {
+  return '';
+});
+
+class CustomSearchBar extends ConsumerStatefulWidget {
   const CustomSearchBar({super.key});
 
   @override
-  State<CustomSearchBar> createState() => _CustomSearchBarState();
+  ConsumerState<CustomSearchBar> createState() => _CustomSearchBarState();
 }
 
-class _CustomSearchBarState extends State<CustomSearchBar> {
+class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
   final _controller = TextEditingController();
 
   @override
@@ -30,9 +35,9 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
               EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
           leading: const Icon(Icons.search),
           hintText: 'Search Repository',
-          onChanged: (text) => {
-            // TODO: search repository using GitHUb API
-          },
+          onChanged: (text) => ref
+              .read(gitHubRepositroySearchTextProvider.notifier)
+              .state = text,
         ),
       ),
     );
