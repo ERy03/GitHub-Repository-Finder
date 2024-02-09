@@ -1,13 +1,27 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:github_repository_finder/domain/github_repository_model.dart';
 import 'package:github_repository_finder/utils/number_formatter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RepositoryOverview extends StatelessWidget {
   const RepositoryOverview({
     super.key,
     this.isDetailScreen = false,
+    required this.gitHubRepositoryModel,
   });
 
+  final GitHubRepositoryModel gitHubRepositoryModel;
   final bool isDetailScreen;
+
+  Future<void> _launchUrl(String stringUrl) async {
+    try {
+      final url = Uri.parse(stringUrl);
+      await launchUrl(url, mode: LaunchMode.platformDefault);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,34 +48,50 @@ class RepositoryOverview extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // heading (User logo and user name)
-              Row(
-                children: <Widget>[
-                  // TODO Replace container with actual image
-                  Container(
-                    height: 32,
-                    width: 32,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.blue),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Text("Username",
-                        overflow: TextOverflow.ellipsis,
-                        style: isDetailScreen
-                            ? const TextStyle(fontSize: 18)
-                            : null),
-                  )
-                ],
+              GestureDetector(
+                onTap: () => isDetailScreen
+                    ? _launchUrl(gitHubRepositoryModel.owner.htmlUrl)
+                    : null,
+                child: Row(
+                  children: <Widget>[
+                    CachedNetworkImage(
+                      height: 32,
+                      width: 32,
+                      imageUrl: gitHubRepositoryModel.owner.avatarUrl,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                                image: imageProvider, fit: BoxFit.cover)),
+                      ),
+                      placeholder: (context, url) => Container(
+                        height: 32,
+                        width: 32,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.grey),
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      child: Text(gitHubRepositoryModel.owner.login,
+                          overflow: TextOverflow.ellipsis,
+                          style: isDetailScreen
+                              ? const TextStyle(fontSize: 18)
+                              : null),
+                    )
+                  ],
+                ),
               ),
 
               verticalSpacing,
 
               // repository title
-              // TODO replace hardcoded text with actual repo title
               Text(
-                "Repository Title",
+                gitHubRepositoryModel.name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -73,11 +103,13 @@ class RepositoryOverview extends StatelessWidget {
               verticalSpacing,
 
               // repository description
-              // TODO replace hardcoded text with actual repo description
               // * Description can be null
-              Text(
-                "This is the description for the respository. It can be quite long or short. If there is no description, do not show",
-                style: TextStyle(fontSize: isDetailScreen ? 17 : 16),
+              Visibility(
+                visible: gitHubRepositoryModel.description != null,
+                child: Text(
+                  gitHubRepositoryModel.description!,
+                  style: TextStyle(fontSize: isDetailScreen ? 17 : 16),
+                ),
               ),
 
               verticalSpacing,
@@ -85,7 +117,7 @@ class RepositoryOverview extends StatelessWidget {
               // Only in detail screen, show url to website
               Visibility(
                 visible:
-                    isDetailScreen, // TODO (condition if is detail screen && has link to website)
+                    isDetailScreen && gitHubRepositoryModel.homepage.isNotEmpty,
                 child: Row(
                   children: <Widget>[
                     const Icon(
@@ -95,15 +127,12 @@ class RepositoryOverview extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    Expanded(
+                    Flexible(
                       child: GestureDetector(
-                        onTap: () {
-                          // TODO Go to url
-                        },
-                        child: const Text(
-                            "www.website_url.org/", // TODO replace with actual url
+                        onTap: () => _launchUrl(gitHubRepositoryModel.homepage),
+                        child: Text(gitHubRepositoryModel.homepage,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 17)),
+                            style: const TextStyle(fontSize: 17)),
                       ),
                     )
                   ],
@@ -121,14 +150,14 @@ class RepositoryOverview extends StatelessWidget {
                     size: 18,
                   ),
                   horizontalSpacing,
-                  // TODO Replace hardcoded star number with actual number
                   isDetailScreen
                       ? Text(
-                          "${numberCompact(1000)} stars", // TODO if number is 1, display star instead of stars
+                          "${numberCompact(gitHubRepositoryModel.stargazersCount)} ${gitHubRepositoryModel.stargazersCount == 1 ? "star" : "stars"}",
                           style: const TextStyle(fontSize: 18),
                         )
                       : Text(
-                          numberWithComma(500),
+                          numberWithComma(
+                              gitHubRepositoryModel.stargazersCount),
                           style: const TextStyle(fontSize: 18),
                         ),
 
@@ -137,17 +166,19 @@ class RepositoryOverview extends StatelessWidget {
                   ),
 
                   // Programming Language
-                  Container(
-                    height: 18,
-                    width: 18,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.blue),
+                  Visibility(
+                    visible: gitHubRepositoryModel.language != null,
+                    child: Container(
+                      height: 18,
+                      width: 18,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.blue),
+                    ),
                   ),
                   horizontalSpacing,
-                  // TODO Replace hardcoded Programming Language with actual Programming Language
-                  const Text(
-                    "Dart",
-                    style: TextStyle(fontSize: 18),
+                  Text(
+                    gitHubRepositoryModel.language!,
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ],
               ),
