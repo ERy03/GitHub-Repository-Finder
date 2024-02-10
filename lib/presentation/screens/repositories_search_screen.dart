@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:github_repository_finder/data/github_repositories_repository.dart';
-import 'package:github_repository_finder/presentation/components/custom_search_bar.dart';
-import 'package:github_repository_finder/presentation/components/repository_list_tile.dart';
+import 'package:github_repository_finder/presentation/components/search_screen/custom_search_bar.dart';
+import 'package:github_repository_finder/presentation/components/search_screen/repository_list_tile.dart';
 
 class RepositoriesSearchScreen extends ConsumerWidget {
   const RepositoriesSearchScreen({super.key});
