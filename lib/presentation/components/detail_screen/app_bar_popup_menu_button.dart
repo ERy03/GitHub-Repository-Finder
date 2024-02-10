@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:github_repository_finder/utils/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 
 class AppBarPopupMenuButton extends StatefulWidget {
-  const AppBarPopupMenuButton({super.key, required this.htmlUrl});
+  const AppBarPopupMenuButton(
+      {super.key,
+      required this.htmlUrl,
+      required this.repoAuthor,
+      required this.repoTitle});
 
   final String htmlUrl;
+  final String repoAuthor;
+  final String repoTitle;
 
   @override
   State<AppBarPopupMenuButton> createState() => _AppBarPopupMenuButtonState();
@@ -50,8 +57,15 @@ class _AppBarPopupMenuButtonState extends State<AppBarPopupMenuButton> {
           child: const Text(
             'Share via...',
           ),
-          onPressed: () {
-            // share
+          onPressed: () async {
+            // sharedPosition is required for iPad
+            final box = context.findRenderObject() as RenderBox?;
+            await Share.share(
+              widget.htmlUrl,
+              subject:
+                  "Check out ${widget.repoAuthor}'s ${widget.repoTitle} repository",
+              sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
+            );
           },
         ),
         MenuItemButton(
