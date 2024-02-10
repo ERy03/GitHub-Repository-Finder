@@ -18,6 +18,8 @@ class RepositoryDetailScreen extends StatelessWidget {
         actions: [
           AppBarPopupMenuButton(
             htmlUrl: gitHubRepositoryModel.htmlUrl,
+            repoAuthor: gitHubRepositoryModel.owner.login,
+            repoTitle: gitHubRepositoryModel.name,
           )
         ],
       ),
