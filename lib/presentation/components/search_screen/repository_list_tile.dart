@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github_repository_finder/domain/github_repository_model.dart';
-import 'package:github_repository_finder/presentation/components/repository_overview.dart';
+import 'package:github_repository_finder/presentation/components/shared/repository_overview.dart';
 import 'package:github_repository_finder/presentation/screens/repository_detail_screen.dart';
 
 class RepositoryListTile extends StatelessWidget {

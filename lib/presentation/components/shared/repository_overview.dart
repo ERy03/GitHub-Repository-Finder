@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:github_repository_finder/domain/github_repository_model.dart';
 import 'package:github_repository_finder/utils/number_formatter.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:github_repository_finder/utils/url_launcher.dart';
 
 class RepositoryOverview extends StatelessWidget {
   const RepositoryOverview({
@@ -13,15 +13,6 @@ class RepositoryOverview extends StatelessWidget {
 
   final GitHubRepositoryModel gitHubRepositoryModel;
   final bool isDetailScreen;
-
-  Future<void> _launchUrl(String stringUrl) async {
-    try {
-      final url = Uri.parse(stringUrl);
-      await launchUrl(url, mode: LaunchMode.platformDefault);
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +41,7 @@ class RepositoryOverview extends StatelessWidget {
               // heading (User logo and user name)
               GestureDetector(
                 onTap: () => isDetailScreen
-                    ? _launchUrl(gitHubRepositoryModel.owner.htmlUrl)
+                    ? gitHubLaunchUrl(gitHubRepositoryModel.owner.htmlUrl)
                     : null,
                 child: Row(
                   children: <Widget>[
@@ -129,7 +120,8 @@ class RepositoryOverview extends StatelessWidget {
                     ),
                     Flexible(
                       child: GestureDetector(
-                        onTap: () => _launchUrl(gitHubRepositoryModel.homepage),
+                        onTap: () =>
+                            gitHubLaunchUrl(gitHubRepositoryModel.homepage),
                         child: Text(gitHubRepositoryModel.homepage,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontSize: 17)),
