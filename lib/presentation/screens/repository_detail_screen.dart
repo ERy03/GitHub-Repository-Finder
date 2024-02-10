@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:github_repository_finder/domain/github_repository_model.dart';
 import 'package:github_repository_finder/enums/enums.dart';
-import 'package:github_repository_finder/presentation/components/repository_detail_tile.dart';
-import 'package:github_repository_finder/presentation/components/repository_overview.dart';
+import 'package:github_repository_finder/presentation/components/detail_screen/app_bar_popup_menu_button.dart';
+import 'package:github_repository_finder/presentation/components/detail_screen/repository_detail_tile.dart';
+import 'package:github_repository_finder/presentation/components/shared/repository_overview.dart';
 
 class RepositoryDetailScreen extends StatelessWidget {
   const RepositoryDetailScreen(
@@ -13,7 +14,13 @@ class RepositoryDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          AppBarPopupMenuButton(
+            htmlUrl: gitHubRepositoryModel.htmlUrl,
+          )
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
