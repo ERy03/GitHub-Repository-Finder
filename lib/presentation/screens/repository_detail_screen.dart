@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:github_repository_finder/domain/github_repository_model.dart';
 import 'package:github_repository_finder/enums/enums.dart';
-import 'package:github_repository_finder/presentation/components/repository_detail_tile.dart';
-import 'package:github_repository_finder/presentation/components/repository_overview.dart';
+import 'package:github_repository_finder/presentation/components/detail_screen/app_bar_popup_menu_button.dart';
+import 'package:github_repository_finder/presentation/components/detail_screen/repository_detail_tile.dart';
+import 'package:github_repository_finder/presentation/components/shared/repository_overview.dart';
 
 class RepositoryDetailScreen extends StatelessWidget {
-  const RepositoryDetailScreen({super.key});
+  const RepositoryDetailScreen(
+      {super.key, required this.gitHubRepositoryModel});
+
+  final GitHubRepositoryModel gitHubRepositoryModel;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          AppBarPopupMenuButton(
+            htmlUrl: gitHubRepositoryModel.htmlUrl,
+            repoAuthor: gitHubRepositoryModel.owner.login,
+            repoTitle: gitHubRepositoryModel.name,
+          )
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const RepositoryOverview(
+            RepositoryOverview(
+              gitHubRepositoryModel: gitHubRepositoryModel,
               isDetailScreen: true,
             ),
             const SizedBox(
@@ -39,16 +53,31 @@ class RepositoryDetailScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 16),
                     child: Column(children: [
-                      for (var details in RepositoryDetails.values)
-                        RepositoryDetailTile(
-                          label: details.label,
-                          icon: details.icon,
-                          color: details.color,
-                          licenseOrNumber: (
-                            license: 'MIT',
-                            number: 10000
-                          ), //TODO pass actual numbers
-                        )
+                      RepositoryDetailTile(
+                        label: RepositoryDetails.issues.label,
+                        icon: RepositoryDetails.issues.icon,
+                        color: RepositoryDetails.issues.color,
+                        number: gitHubRepositoryModel.openIssuesCount,
+                      ),
+                      RepositoryDetailTile(
+                        label: RepositoryDetails.forks.label,
+                        icon: RepositoryDetails.forks.icon,
+                        color: RepositoryDetails.forks.color,
+                        number: gitHubRepositoryModel.forksCount,
+                      ),
+                      RepositoryDetailTile(
+                        label: RepositoryDetails.watchers.label,
+                        icon: RepositoryDetails.watchers.icon,
+                        color: RepositoryDetails.watchers.color,
+                        number: gitHubRepositoryModel.watchersCount,
+                      ),
+                      RepositoryDetailTile(
+                        label: RepositoryDetails.license.label,
+                        icon: RepositoryDetails.license.icon,
+                        color: RepositoryDetails.license.color,
+                        license:
+                            gitHubRepositoryModel.license?.spdxId ?? 'None',
+                      ),
                     ]),
                   ),
                 ),

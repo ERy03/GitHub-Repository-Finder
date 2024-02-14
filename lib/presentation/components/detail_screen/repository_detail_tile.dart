@@ -3,17 +3,20 @@ import 'package:github_repository_finder/enums/enums.dart';
 import 'package:github_repository_finder/utils/number_formatter.dart';
 
 class RepositoryDetailTile extends StatelessWidget {
-  const RepositoryDetailTile(
-      {super.key,
-      required this.label,
-      required this.icon,
-      required this.color,
-      required this.licenseOrNumber});
+  const RepositoryDetailTile({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.color,
+    this.number,
+    this.license,
+  });
 
   final String label;
   final IconData icon;
   final Color color;
-  final ({String? license, int? number}) licenseOrNumber;
+  final int? number;
+  final String? license;
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +60,7 @@ class RepositoryDetailTile extends StatelessWidget {
                       style: const TextStyle(fontSize: 17),
                     ),
                     Text(
-                      label == RepositoryDetails.license.label
-                          ? licenseOrNumber.license ?? 'None'
-                          : numberWithComma(licenseOrNumber.number!),
+                      license ?? numberWithComma(number ?? 0),
                       style: const TextStyle(fontSize: 17),
                     ),
                   ],
