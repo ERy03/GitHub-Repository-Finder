@@ -25,7 +25,7 @@ final gitHubRepositoriesRepositoryProvider =
 typedef GitHubRepositoriesRepositoryRef
     = AutoDisposeProviderRef<GitHubRepositoriesRepository>;
 String _$searchRepositoriesHash() =>
-    r'339eededcff132573365860c37e4a9009f77378d';
+    r'dad426938bfe329639d34686e7abefd6f530f8e5';
 
 /// Copied from Dart SDK
 class _SystemHash {
