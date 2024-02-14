@@ -22,7 +22,7 @@ class GitHubRepositoryModel {
   final String name;
   final String? description;
   final String htmlUrl;
-  final String homepage;
+  final String? homepage;
   final int stargazersCount;
   final int watchersCount;
   final String? language;
@@ -81,7 +81,7 @@ class GitHubRepositoryModel {
       description:
           map['description'] != null ? map['description'] as String : null,
       htmlUrl: map['html_url'] as String,
-      homepage: map['homepage'] as String,
+      homepage: map['homepage'] != null ? map['homepage'] as String : null,
       stargazersCount: map['stargazers_count'] as int,
       watchersCount: map['watchers_count'] as int,
       language: map['language'] != null ? map['language'] as String : null,
