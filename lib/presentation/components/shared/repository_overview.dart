@@ -98,7 +98,7 @@ class RepositoryOverview extends StatelessWidget {
               Visibility(
                 visible: gitHubRepositoryModel.description != null,
                 child: Text(
-                  gitHubRepositoryModel.description!,
+                  gitHubRepositoryModel.description ?? '',
                   style: TextStyle(fontSize: isDetailScreen ? 17 : 16),
                 ),
               ),
@@ -107,8 +107,9 @@ class RepositoryOverview extends StatelessWidget {
 
               // Only in detail screen, show url to website
               Visibility(
-                visible:
-                    isDetailScreen && gitHubRepositoryModel.homepage.isNotEmpty,
+                visible: isDetailScreen &&
+                    gitHubRepositoryModel.homepage != null &&
+                    gitHubRepositoryModel.homepage != "",
                 child: Row(
                   children: <Widget>[
                     const Icon(
@@ -121,8 +122,8 @@ class RepositoryOverview extends StatelessWidget {
                     Flexible(
                       child: GestureDetector(
                         onTap: () =>
-                            gitHubLaunchUrl(gitHubRepositoryModel.homepage),
-                        child: Text(gitHubRepositoryModel.homepage,
+                            gitHubLaunchUrl(gitHubRepositoryModel.homepage!),
+                        child: Text(gitHubRepositoryModel.homepage ?? '',
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontSize: 17)),
                       ),
@@ -168,9 +169,13 @@ class RepositoryOverview extends StatelessWidget {
                     ),
                   ),
                   horizontalSpacing,
-                  Text(
-                    gitHubRepositoryModel.language!,
-                    style: const TextStyle(fontSize: 18),
+
+                  Visibility(
+                    visible: gitHubRepositoryModel.language != null,
+                    child: Text(
+                      gitHubRepositoryModel.language ?? '',
+                      style: const TextStyle(fontSize: 18),
+                    ),
                   ),
                 ],
               ),
