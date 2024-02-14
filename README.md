@@ -42,10 +42,24 @@ Conform to Material Design
 
 - [Flutter_svg 2.0.9](https://pub.dev/packages/flutter_svg)
 - [intl ^0.19.0](https://pub.dev/packages/intl)
+- [dio ^5.4.0](https://pub.dev/packages/dio)
+- [flutter_riverpod: ^2.4.10](https://pub.dev/packages/flutter_riverpod)
+- [riverpod_annotation: ^2.3.4](https://pub.dev/packages/riverpod_annotation)
+- [cached_network_image: ^3.3.1](https://pub.dev/packages/cached_network_image)
+- [url_launcher: ^6.2.4](https://pub.dev/packages/url_launcher)
+- [share_plus: ^7.2.2](https://pub.dev/packages/share_plus)
 
 ## Credits
 
 - [DevIcon](https://github.com/devicons/devicon/): GitHub Icon used for App bar
+
+## Inspiration and Documents
+
+- https://codewithandrea.com/articles/flutter-riverpod-data-caching-providers-lifecycle/#caching-with-timeout
+
+## Side note
+
+I would typically use GoRouter for navigation. However, because the project has simple navigation and does not require web implmentation, I just went with the Navigator widget. If you want to utilize GoRouter and implement this project for web, you would not be able to pass the `GitHubRepositoryModel` object when navigating to the detail screen because we can't encode custom objects inside the URL path.
 
 ## Evaluation
 
