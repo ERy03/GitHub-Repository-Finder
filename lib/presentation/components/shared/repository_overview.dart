@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_repository_finder/data/github_language_colors_repository.dart';
 import 'package:github_repository_finder/domain/github_repository_model.dart';
 import 'package:github_repository_finder/utils/number_formatter.dart';
+import 'package:github_repository_finder/utils/string_to_hex_color.dart';
 import 'package:github_repository_finder/utils/url_launcher.dart';
 
-class RepositoryOverview extends StatelessWidget {
+class RepositoryOverview extends ConsumerWidget {
   const RepositoryOverview({
     super.key,
     this.isDetailScreen = false,
@@ -15,13 +18,16 @@ class RepositoryOverview extends StatelessWidget {
   final bool isDetailScreen;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final verticalSpacing = SizedBox(
       height: isDetailScreen ? 8 : 5,
     );
     final horizontalSpacing = SizedBox(
       width: isDetailScreen ? 10 : 3,
     );
+
+    final colorList = ref.watch(getLanguageColorsProvider);
+
     return SafeArea(
       top: false,
       bottom: false,
@@ -164,8 +170,21 @@ class RepositoryOverview extends StatelessWidget {
                     child: Container(
                       height: 18,
                       width: 18,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: Colors.blue),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: stringToHexColor(colorList.when(
+                              data: (colors) {
+                                final index = colors.indexWhere((element) =>
+                                    element.name ==
+                                    gitHubRepositoryModel.language);
+                                if (index == -1) {
+                                  return "#808080";
+                                } else {
+                                  return colors[index].color ?? "#808080";
+                                }
+                              },
+                              error: (_, __) => "#808080",
+                              loading: () => "#808080"))),
                     ),
                   ),
                   horizontalSpacing,
