@@ -1,0 +1,12 @@
+{
+  "issues": "Issues",
+  "forks": "フォーク",
+  "watchers": "Watchしているユーザー",
+  "license": "ライセンス",
+  "viewOnGitHub": "GitHubで開く",
+  "shareVia": "共有...",
+  "none": "なし",
+  "find": "検索してみましょう",
+  "searchGH": "GitHub内のリポジトリを検索できます。",
+  "searchRepository": "リポジトリを探す"
+}

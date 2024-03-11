@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_repository_finder/generated/locale_keys.g.dart';
 
 final gitHubRepositroySearchTextProvider = StateProvider<String>((ref) {
   return '';
@@ -34,7 +36,7 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
           padding: const MaterialStatePropertyAll<EdgeInsets>(
               EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
           leading: const Icon(Icons.search),
-          hintText: 'Search Repository',
+          hintText: LocaleKeys.searchRepository.tr(),
           onChanged: (text) => ref
               .read(gitHubRepositroySearchTextProvider.notifier)
               .state = text,

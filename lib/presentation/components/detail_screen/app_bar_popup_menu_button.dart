@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:github_repository_finder/generated/locale_keys.g.dart';
 import 'package:github_repository_finder/utils/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -53,8 +55,8 @@ class _AppBarPopupMenuButtonState extends State<AppBarPopupMenuButton> {
                 Icons.ios_share_outlined,
                 color: Theme.of(context).iconTheme.color,
               ),
-              child: const Text(
-                'Share via...',
+              child: Text(
+                LocaleKeys.shareVia.tr(),
               ),
               onPressed: () async {
                 // sharedPosition is required for iPad
@@ -79,8 +81,8 @@ class _AppBarPopupMenuButtonState extends State<AppBarPopupMenuButton> {
                 Icons.public_outlined,
                 color: Theme.of(context).iconTheme.color,
               ),
-              child: const Text(
-                'View on GitHub',
+              child: Text(
+                LocaleKeys.viewOnGitHub.tr(),
               ),
               onPressed: () {
                 gitHubLaunchUrl(widget.htmlUrl);
