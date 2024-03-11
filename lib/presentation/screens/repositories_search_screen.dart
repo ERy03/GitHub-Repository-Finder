@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,13 +17,25 @@ class RepositoriesSearchScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          title: SvgPicture.asset(
-            'assets/icons/github-original-wordmark.svg',
-            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-            height: 50,
-            width: 50,
-          )),
+        centerTitle: true,
+        title: SvgPicture.asset(
+          'assets/icons/github-original-wordmark.svg',
+          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+          height: 50,
+          width: 50,
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: GestureDetector(
+              onTap: () {
+                AppSettings.openAppSettings(type: AppSettingsType.settings);
+              },
+              child: const Icon(Icons.translate_outlined),
+            ),
+          )
+        ],
+      ),
       body: Column(
         children: [
           // Search Bar
