@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:github_repository_finder/domain/github_repository_model.dart';
 import 'package:github_repository_finder/enums/enums.dart';
+import 'package:github_repository_finder/generated/locale_keys.g.dart';
 import 'package:github_repository_finder/presentation/components/detail_screen/app_bar_popup_menu_button.dart';
 import 'package:github_repository_finder/presentation/components/detail_screen/repository_detail_tile.dart';
 import 'package:github_repository_finder/presentation/components/shared/repository_overview.dart';
@@ -54,29 +56,29 @@ class RepositoryDetailScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 16),
                     child: Column(children: [
                       RepositoryDetailTile(
-                        label: RepositoryDetails.issues.label,
+                        label: RepositoryDetails.issues.label.tr(),
                         icon: RepositoryDetails.issues.icon,
                         color: RepositoryDetails.issues.color,
                         number: gitHubRepositoryModel.openIssuesCount,
                       ),
                       RepositoryDetailTile(
-                        label: RepositoryDetails.forks.label,
+                        label: RepositoryDetails.forks.label.tr(),
                         icon: RepositoryDetails.forks.icon,
                         color: RepositoryDetails.forks.color,
                         number: gitHubRepositoryModel.forksCount,
                       ),
                       RepositoryDetailTile(
-                        label: RepositoryDetails.watchers.label,
+                        label: RepositoryDetails.watchers.label.tr(),
                         icon: RepositoryDetails.watchers.icon,
                         color: RepositoryDetails.watchers.color,
                         number: gitHubRepositoryModel.watchersCount,
                       ),
                       RepositoryDetailTile(
-                        label: RepositoryDetails.license.label,
+                        label: RepositoryDetails.license.label.tr(),
                         icon: RepositoryDetails.license.icon,
                         color: RepositoryDetails.license.color,
-                        license:
-                            gitHubRepositoryModel.license?.spdxId ?? 'None',
+                        license: gitHubRepositoryModel.license?.spdxId ??
+                            LocaleKeys.none.tr(),
                       ),
                     ]),
                   ),
