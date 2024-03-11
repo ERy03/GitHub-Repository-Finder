@@ -151,7 +151,7 @@ class RepositoryOverview extends ConsumerWidget {
                   horizontalSpacing,
                   isDetailScreen
                       ? Text(
-                          "${numberCompact(gitHubRepositoryModel.stargazersCount)} ${gitHubRepositoryModel.stargazersCount == 1 ? "star" : "stars"}",
+                          "${numberCompact(gitHubRepositoryModel.stargazersCount)} ${gitHubRepositoryModel.stargazersCount == 1 ? "Star" : "Stars"}",
                           style: const TextStyle(fontSize: 18),
                         )
                       : Text(
