@@ -25,6 +25,7 @@ class _AppBarPopupMenuButtonState extends State<AppBarPopupMenuButton> {
     return MenuAnchor(
       alignmentOffset: const Offset(-175, 0),
       style: const MenuStyle(
+        elevation: MaterialStatePropertyAll(1),
         padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 0)),
         shape: MaterialStatePropertyAll(RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8)))),
@@ -57,6 +58,7 @@ class _AppBarPopupMenuButtonState extends State<AppBarPopupMenuButton> {
               ),
               child: Text(
                 LocaleKeys.shareVia.tr(),
+                style: Theme.of(context).textTheme.labelLarge,
               ),
               onPressed: () async {
                 // sharedPosition is required for iPad
@@ -83,6 +85,7 @@ class _AppBarPopupMenuButtonState extends State<AppBarPopupMenuButton> {
               ),
               child: Text(
                 LocaleKeys.viewOnGitHub.tr(),
+                style: Theme.of(context).textTheme.labelLarge,
               ),
               onPressed: () {
                 gitHubLaunchUrl(widget.htmlUrl);

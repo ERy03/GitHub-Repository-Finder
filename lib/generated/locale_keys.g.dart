@@ -11,5 +11,8 @@ abstract class  LocaleKeys {
   static const find = 'find';
   static const searchGH = 'searchGH';
   static const searchRepository = 'searchRepository';
+  static const appLanguage = 'appLanguage';
+  static const lightMode = 'lightMode';
+  static const darkMode = 'darkMode';
 
 }

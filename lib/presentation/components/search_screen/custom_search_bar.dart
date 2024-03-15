@@ -32,6 +32,7 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
         bottom: false,
         child: SearchBar(
           elevation: MaterialStateProperty.all(1),
+          shadowColor: MaterialStateProperty.all(Colors.transparent),
           controller: _controller,
           padding: const MaterialStatePropertyAll<EdgeInsets>(
               EdgeInsets.symmetric(horizontal: 16, vertical: 8)),

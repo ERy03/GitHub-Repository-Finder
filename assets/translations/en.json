@@ -8,5 +8,8 @@
   "none": "None",
   "find": "Find your stuff.",
   "searchGH": "Search all of GitHub for Repositories.",
-  "searchRepository": "Search Repository"
+  "searchRepository": "Search Repository",
+  "appLanguage": "App Language",
+  "lightMode": "Light Mode",
+  "darkMode": "Dark Mode"
 }

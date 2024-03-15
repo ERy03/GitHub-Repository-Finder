@@ -8,5 +8,8 @@
   "none": "なし",
   "find": "検索してみましょう",
   "searchGH": "GitHub内のリポジトリを検索できます。",
-  "searchRepository": "リポジトリを探す"
+  "searchRepository": "リポジトリを探す",
+  "appLanguage": "アプリの言語",
+  "lightMode": "ライトモード",
+  "darkMode": "ダークモード"
 }
