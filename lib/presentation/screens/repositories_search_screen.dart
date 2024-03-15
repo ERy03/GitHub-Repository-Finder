@@ -1,8 +1,9 @@
-import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:github_repository_finder/data/github_repositories_repository.dart';
+import 'package:github_repository_finder/theme/theme_mode_provider.dart';
+import 'package:github_repository_finder/presentation/components/search_screen/custom_app_bar.dart';
 import 'package:github_repository_finder/presentation/components/search_screen/custom_search_bar.dart';
 import 'package:github_repository_finder/presentation/components/search_screen/find_prompt.dart';
 import 'package:github_repository_finder/presentation/components/search_screen/repository_list_tile.dart';
@@ -14,28 +15,15 @@ class RepositoriesSearchScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final query = ref.watch(gitHubRepositroySearchTextProvider);
     final githubRepositories = ref.watch(searchRepositoriesProvider(query));
+    final themeModeState = ref.watch(themeModeProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: SvgPicture.asset(
-          'assets/icons/github-original-wordmark.svg',
-          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-          height: 50,
-          width: 50,
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: GestureDetector(
-              onTap: () {
-                AppSettings.openAppSettings(type: AppSettingsType.settings);
-              },
-              child: const Icon(Icons.translate_outlined),
-            ),
-          )
-        ],
-      ),
+      appBar: CustomAppBar(
+          themeModeProvider: themeModeState,
+          context: context,
+          toggle: (val) {
+            ref.read(themeModeProvider.notifier).update((state) => val);
+          }),
       body: Column(
         children: [
           // Search Bar
