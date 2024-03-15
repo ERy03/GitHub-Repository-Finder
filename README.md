@@ -50,6 +50,7 @@ Conform to Material Design
 - [share_plus: ^7.2.2](https://pub.dev/packages/share_plus)
 - [easy_localization: ^3.0.4](https://pub.dev/packages/easy_localization)
 - [app_settings: ^5.1.1](https://pub.dev/packages/app_settings)
+- [shared_preferences: ^2.2.2](https://pub.dev/packages/shared_preferences)
 
 intl uses version 0.18.1 because intl is pinned to version 0.18.1 by flutter_localizations from the flutter SDK.
 
