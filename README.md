@@ -77,7 +77,7 @@ Target 0: (Runner) stopped.
 Lost connection to device
 ```
 
-This is the expected behavior because the app is being rebotted when its setting is changed.
+This is the expected behavior because the app is being rebooted when its setting is changed.
 
 [As explained in this comment](https://github.com/Baseflow/flutter-permission-handler/issues/509#issuecomment-1113636977)
 
@@ -88,6 +88,7 @@ This is the expected behavior because the app is being rebotted when its setting
 ## Inspiration and Documents
 
 - https://codewithandrea.com/articles/flutter-riverpod-data-caching-providers-lifecycle/#caching-with-timeout
+- [Implementing pagination](https://github.com/rrousselGit/riverpod/tree/master/examples/marvel)
 
 ## Side note
 
