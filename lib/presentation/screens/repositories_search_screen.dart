@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_repository_finder/data/github_pagination.dart';
 
 import 'package:github_repository_finder/data/github_repositories_repository.dart';
 import 'package:github_repository_finder/theme/theme_mode_provider.dart';
@@ -14,10 +15,10 @@ class RepositoriesSearchScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final query = ref.watch(gitHubRepositroySearchTextProvider);
-    final githubRepositories = ref.watch(searchRepositoriesProvider(query));
     final themeModeState = ref.watch(themeModeProvider);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
           themeModeProvider: themeModeState,
           context: context,
@@ -31,25 +32,49 @@ class RepositoriesSearchScreen extends ConsumerWidget {
 
           // List of Repositories
           Expanded(
-              child: githubRepositories.when(
-                  data: (repositories) {
-                    if (repositories.isEmpty) {
-                      return const FindPrompt();
-                    } else {
-                      return ListView(
-                        children: [
-                          for (var githubRepository in repositories)
-                            RepositoryListTile(
-                              gitHubRepositoryModel: githubRepository,
-                            )
-                        ],
-                      );
-                    }
-                  },
-                  error: (e, _) => Center(child: Text(e.toString())),
-                  loading: () => const Center(
-                        child: CircularProgressIndicator(),
-                      ))),
+              child: query.isEmpty
+                  ? const FindPrompt()
+                  : ref.watch(gitHubRepositoryTotalCountProvider(query)).when(
+                      error: (e, _) => Center(child: Text(e.toString())),
+                      loading: () => const Center(
+                            child: CircularProgressIndicator.adaptive(),
+                          ),
+                      data: (repositoriesCount) {
+                        return ListView.custom(
+                            semanticChildCount: repositoriesCount,
+                            childrenDelegate: SliverChildBuilderDelegate(
+                                childCount: repositoriesCount,
+                                (context, index) {
+                              // obtain page number (20 is the number of results obtain by calling the api)
+                              final page = index ~/ 20 + 1;
+                              // indexInPage is used to get the actual repository from the list
+                              final indexInPage = index % 20;
+
+                              final githubRepositories = ref.watch(
+                                  searchRepositoriesProvider(
+                                      pagination: GitHubPagination(
+                                          page: page, query: query)));
+
+                              return githubRepositories.when(
+                                  data: (gitHubResponse) {
+                                return RepositoryListTile(
+                                  gitHubRepositoryModel:
+                                      gitHubResponse.items[indexInPage],
+                                );
+                              }, error: (e, _) {
+                                if (indexInPage != 0) return null;
+                                return Center(child: Text(e.toString()));
+                              }, loading: () {
+                                if (indexInPage != 0) return null;
+                                return const Padding(
+                                  padding: EdgeInsets.only(top: 8.0),
+                                  child: Center(
+                                    child: CircularProgressIndicator.adaptive(),
+                                  ),
+                                );
+                              });
+                            }));
+                      }))
         ],
       ),
     );

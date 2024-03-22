@@ -24,8 +24,8 @@ final gitHubRepositoriesRepositoryProvider =
 
 typedef GitHubRepositoriesRepositoryRef
     = AutoDisposeProviderRef<GitHubRepositoriesRepository>;
-String _$searchRepositoriesHash() =>
-    r'dad426938bfe329639d34686e7abefd6f530f8e5';
+String _$gitHubRepositoryTotalCountHash() =>
+    r'd17aa2a4b1cc52b066574a44ff3e70b54df97a22';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -48,22 +48,153 @@ class _SystemHash {
   }
 }
 
+/// See also [gitHubRepositoryTotalCount].
+@ProviderFor(gitHubRepositoryTotalCount)
+const gitHubRepositoryTotalCountProvider = GitHubRepositoryTotalCountFamily();
+
+/// See also [gitHubRepositoryTotalCount].
+class GitHubRepositoryTotalCountFamily extends Family<AsyncValue<int>> {
+  /// See also [gitHubRepositoryTotalCount].
+  const GitHubRepositoryTotalCountFamily();
+
+  /// See also [gitHubRepositoryTotalCount].
+  GitHubRepositoryTotalCountProvider call(
+    String query,
+  ) {
+    return GitHubRepositoryTotalCountProvider(
+      query,
+    );
+  }
+
+  @override
+  GitHubRepositoryTotalCountProvider getProviderOverride(
+    covariant GitHubRepositoryTotalCountProvider provider,
+  ) {
+    return call(
+      provider.query,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'gitHubRepositoryTotalCountProvider';
+}
+
+/// See also [gitHubRepositoryTotalCount].
+class GitHubRepositoryTotalCountProvider
+    extends AutoDisposeProvider<AsyncValue<int>> {
+  /// See also [gitHubRepositoryTotalCount].
+  GitHubRepositoryTotalCountProvider(
+    String query,
+  ) : this._internal(
+          (ref) => gitHubRepositoryTotalCount(
+            ref as GitHubRepositoryTotalCountRef,
+            query,
+          ),
+          from: gitHubRepositoryTotalCountProvider,
+          name: r'gitHubRepositoryTotalCountProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$gitHubRepositoryTotalCountHash,
+          dependencies: GitHubRepositoryTotalCountFamily._dependencies,
+          allTransitiveDependencies:
+              GitHubRepositoryTotalCountFamily._allTransitiveDependencies,
+          query: query,
+        );
+
+  GitHubRepositoryTotalCountProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.query,
+  }) : super.internal();
+
+  final String query;
+
+  @override
+  Override overrideWith(
+    AsyncValue<int> Function(GitHubRepositoryTotalCountRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GitHubRepositoryTotalCountProvider._internal(
+        (ref) => create(ref as GitHubRepositoryTotalCountRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        query: query,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<AsyncValue<int>> createElement() {
+    return _GitHubRepositoryTotalCountProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GitHubRepositoryTotalCountProvider && other.query == query;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, query.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GitHubRepositoryTotalCountRef on AutoDisposeProviderRef<AsyncValue<int>> {
+  /// The parameter `query` of this provider.
+  String get query;
+}
+
+class _GitHubRepositoryTotalCountProviderElement
+    extends AutoDisposeProviderElement<AsyncValue<int>>
+    with GitHubRepositoryTotalCountRef {
+  _GitHubRepositoryTotalCountProviderElement(super.provider);
+
+  @override
+  String get query => (origin as GitHubRepositoryTotalCountProvider).query;
+}
+
+String _$searchRepositoriesHash() =>
+    r'2fb3e5e9ce37b12cc15dc1a3eb58fc6e60ea0552';
+
 /// See also [searchRepositories].
 @ProviderFor(searchRepositories)
 const searchRepositoriesProvider = SearchRepositoriesFamily();
 
 /// See also [searchRepositories].
 class SearchRepositoriesFamily
-    extends Family<AsyncValue<List<GitHubRepositoryModel>>> {
+    extends Family<AsyncValue<GitHubRepositoryResponseModel>> {
   /// See also [searchRepositories].
   const SearchRepositoriesFamily();
 
   /// See also [searchRepositories].
-  SearchRepositoriesProvider call(
-    String query,
-  ) {
+  SearchRepositoriesProvider call({
+    required GitHubPagination pagination,
+  }) {
     return SearchRepositoriesProvider(
-      query,
+      pagination: pagination,
     );
   }
 
@@ -72,7 +203,7 @@ class SearchRepositoriesFamily
     covariant SearchRepositoriesProvider provider,
   ) {
     return call(
-      provider.query,
+      pagination: provider.pagination,
     );
   }
 
@@ -93,14 +224,14 @@ class SearchRepositoriesFamily
 
 /// See also [searchRepositories].
 class SearchRepositoriesProvider
-    extends AutoDisposeFutureProvider<List<GitHubRepositoryModel>> {
+    extends AutoDisposeFutureProvider<GitHubRepositoryResponseModel> {
   /// See also [searchRepositories].
-  SearchRepositoriesProvider(
-    String query,
-  ) : this._internal(
+  SearchRepositoriesProvider({
+    required GitHubPagination pagination,
+  }) : this._internal(
           (ref) => searchRepositories(
             ref as SearchRepositoriesRef,
-            query,
+            pagination: pagination,
           ),
           from: searchRepositoriesProvider,
           name: r'searchRepositoriesProvider',
@@ -111,7 +242,7 @@ class SearchRepositoriesProvider
           dependencies: SearchRepositoriesFamily._dependencies,
           allTransitiveDependencies:
               SearchRepositoriesFamily._allTransitiveDependencies,
-          query: query,
+          pagination: pagination,
         );
 
   SearchRepositoriesProvider._internal(
@@ -121,14 +252,14 @@ class SearchRepositoriesProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.query,
+    required this.pagination,
   }) : super.internal();
 
-  final String query;
+  final GitHubPagination pagination;
 
   @override
   Override overrideWith(
-    FutureOr<List<GitHubRepositoryModel>> Function(
+    FutureOr<GitHubRepositoryResponseModel> Function(
             SearchRepositoriesRef provider)
         create,
   ) {
@@ -141,44 +272,46 @@ class SearchRepositoriesProvider
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        query: query,
+        pagination: pagination,
       ),
     );
   }
 
   @override
-  AutoDisposeFutureProviderElement<List<GitHubRepositoryModel>>
+  AutoDisposeFutureProviderElement<GitHubRepositoryResponseModel>
       createElement() {
     return _SearchRepositoriesProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SearchRepositoriesProvider && other.query == query;
+    return other is SearchRepositoriesProvider &&
+        other.pagination == pagination;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, query.hashCode);
+    hash = _SystemHash.combine(hash, pagination.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin SearchRepositoriesRef
-    on AutoDisposeFutureProviderRef<List<GitHubRepositoryModel>> {
-  /// The parameter `query` of this provider.
-  String get query;
+    on AutoDisposeFutureProviderRef<GitHubRepositoryResponseModel> {
+  /// The parameter `pagination` of this provider.
+  GitHubPagination get pagination;
 }
 
 class _SearchRepositoriesProviderElement
-    extends AutoDisposeFutureProviderElement<List<GitHubRepositoryModel>>
+    extends AutoDisposeFutureProviderElement<GitHubRepositoryResponseModel>
     with SearchRepositoriesRef {
   _SearchRepositoriesProviderElement(super.provider);
 
   @override
-  String get query => (origin as SearchRepositoriesProvider).query;
+  GitHubPagination get pagination =>
+      (origin as SearchRepositoriesProvider).pagination;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
