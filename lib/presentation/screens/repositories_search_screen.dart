@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:github_repository_finder/data/github_pagination.dart';
 
 import 'package:github_repository_finder/data/github_repositories_repository.dart';
+import 'package:github_repository_finder/presentation/components/search_screen/no_github_repositories_found.dart';
 import 'package:github_repository_finder/theme/theme_mode_provider.dart';
 import 'package:github_repository_finder/presentation/components/search_screen/custom_app_bar.dart';
 import 'package:github_repository_finder/presentation/components/search_screen/custom_search_bar.dart';
@@ -40,40 +41,43 @@ class RepositoriesSearchScreen extends ConsumerWidget {
                             child: CircularProgressIndicator.adaptive(),
                           ),
                       data: (repositoriesCount) {
-                        return ListView.custom(
-                            semanticChildCount: repositoriesCount,
-                            childrenDelegate: SliverChildBuilderDelegate(
-                                childCount: repositoriesCount,
-                                (context, index) {
-                              // obtain page number (20 is the number of results obtain by calling the api)
-                              final page = index ~/ 20 + 1;
-                              // indexInPage is used to get the actual repository from the list
-                              final indexInPage = index % 20;
+                        return repositoriesCount == 0
+                            ? const NoGitHubRepositoriesFound()
+                            : ListView.custom(
+                                semanticChildCount: repositoriesCount,
+                                childrenDelegate: SliverChildBuilderDelegate(
+                                    childCount: repositoriesCount,
+                                    (context, index) {
+                                  // obtain page number (20 is the number of results obtain by calling the api)
+                                  final page = index ~/ 20 + 1;
+                                  // indexInPage is used to get the actual repository from the list
+                                  final indexInPage = index % 20;
 
-                              final githubRepositories = ref.watch(
-                                  searchRepositoriesProvider(
-                                      pagination: GitHubPagination(
-                                          page: page, query: query)));
+                                  final githubRepositories = ref.watch(
+                                      searchRepositoriesProvider(
+                                          pagination: GitHubPagination(
+                                              page: page, query: query)));
 
-                              return githubRepositories.when(
-                                  data: (gitHubResponse) {
-                                return RepositoryListTile(
-                                  gitHubRepositoryModel:
-                                      gitHubResponse.items[indexInPage],
-                                );
-                              }, error: (e, _) {
-                                if (indexInPage != 0) return null;
-                                return Center(child: Text(e.toString()));
-                              }, loading: () {
-                                if (indexInPage != 0) return null;
-                                return const Padding(
-                                  padding: EdgeInsets.only(top: 8.0),
-                                  child: Center(
-                                    child: CircularProgressIndicator.adaptive(),
-                                  ),
-                                );
-                              });
-                            }));
+                                  return githubRepositories.when(
+                                      data: (gitHubResponse) {
+                                    return RepositoryListTile(
+                                      gitHubRepositoryModel:
+                                          gitHubResponse.items[indexInPage],
+                                    );
+                                  }, error: (e, _) {
+                                    if (indexInPage != 0) return null;
+                                    return Center(child: Text(e.toString()));
+                                  }, loading: () {
+                                    if (indexInPage != 0) return null;
+                                    return const Padding(
+                                      padding: EdgeInsets.only(top: 8.0),
+                                      child: Center(
+                                        child: CircularProgressIndicator
+                                            .adaptive(),
+                                      ),
+                                    );
+                                  });
+                                }));
                       }))
         ],
       ),
