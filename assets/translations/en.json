@@ -11,5 +11,6 @@
   "searchRepository": "Search Repository",
   "appLanguage": "App Language",
   "lightMode": "Light Mode",
-  "darkMode": "Dark Mode"
+  "darkMode": "Dark Mode",
+  "noRepositories": "There aren't any repositories."
 }

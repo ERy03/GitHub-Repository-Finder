@@ -11,5 +11,6 @@
   "searchRepository": "リポジトリを探す",
   "appLanguage": "アプリの言語",
   "lightMode": "ライトモード",
-  "darkMode": "ダークモード"
+  "darkMode": "ダークモード",
+  "noRepositories": "リポジトリがありません。"
 }

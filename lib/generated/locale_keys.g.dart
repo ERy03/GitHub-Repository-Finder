@@ -14,5 +14,6 @@ abstract class  LocaleKeys {
   static const appLanguage = 'appLanguage';
   static const lightMode = 'lightMode';
   static const darkMode = 'darkMode';
+  static const noRepositories = 'noRepositories';
 
 }
