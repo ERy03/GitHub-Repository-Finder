@@ -18,68 +18,74 @@ class RepositoriesSearchScreen extends ConsumerWidget {
     final query = ref.watch(gitHubRepositroySearchTextProvider);
     final themeModeState = ref.watch(themeModeProvider);
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(
-          themeModeProvider: themeModeState,
-          context: context,
-          toggle: (val) {
-            ref.read(themeModeProvider.notifier).update((state) => val);
-          }),
-      body: Column(
-        children: [
-          // Search Bar
-          const CustomSearchBar(),
+    // Use this listner so the keyboard hides whenever user taps outside of the searchbar
+    return Listener(
+      onPointerDown: (_) {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: CustomAppBar(
+            themeModeProvider: themeModeState,
+            context: context,
+            toggle: (val) {
+              ref.read(themeModeProvider.notifier).update((state) => val);
+            }),
+        body: Column(
+          children: [
+            // Search Bar
+            const CustomSearchBar(),
 
-          // List of Repositories
-          Expanded(
-              child: query.isEmpty
-                  ? const FindPrompt()
-                  : ref.watch(gitHubRepositoryTotalCountProvider(query)).when(
-                      error: (e, _) => Center(child: Text(e.toString())),
-                      loading: () => const Center(
-                            child: CircularProgressIndicator.adaptive(),
-                          ),
-                      data: (repositoriesCount) {
-                        return repositoriesCount == 0
-                            ? const NoGitHubRepositoriesFound()
-                            : ListView.custom(
-                                semanticChildCount: repositoriesCount,
-                                childrenDelegate: SliverChildBuilderDelegate(
-                                    childCount: repositoriesCount,
-                                    (context, index) {
-                                  // obtain page number (20 is the number of results obtain by calling the api)
-                                  final page = index ~/ 20 + 1;
-                                  // indexInPage is used to get the actual repository from the list
-                                  final indexInPage = index % 20;
+            // List of Repositories
+            Expanded(
+                child: query.isEmpty
+                    ? const FindPrompt()
+                    : ref.watch(gitHubRepositoryTotalCountProvider(query)).when(
+                        error: (e, _) => Center(child: Text(e.toString())),
+                        loading: () => const Center(
+                              child: CircularProgressIndicator.adaptive(),
+                            ),
+                        data: (repositoriesCount) {
+                          return repositoriesCount == 0
+                              ? const NoGitHubRepositoriesFound()
+                              : ListView.custom(
+                                  semanticChildCount: repositoriesCount,
+                                  childrenDelegate: SliverChildBuilderDelegate(
+                                      childCount: repositoriesCount,
+                                      (context, index) {
+                                    // obtain page number (20 is the number of results obtain by calling the api)
+                                    final page = index ~/ 20 + 1;
+                                    // indexInPage is used to get the actual repository from the list
+                                    final indexInPage = index % 20;
 
-                                  final githubRepositories = ref.watch(
-                                      searchRepositoriesProvider(
-                                          pagination: GitHubPagination(
-                                              page: page, query: query)));
+                                    final githubRepositories = ref.watch(
+                                        searchRepositoriesProvider(
+                                            pagination: GitHubPagination(
+                                                page: page, query: query)));
 
-                                  return githubRepositories.when(
-                                      data: (gitHubResponse) {
-                                    return RepositoryListTile(
-                                      gitHubRepositoryModel:
-                                          gitHubResponse.items[indexInPage],
-                                    );
-                                  }, error: (e, _) {
-                                    if (indexInPage != 0) return null;
-                                    return Center(child: Text(e.toString()));
-                                  }, loading: () {
-                                    if (indexInPage != 0) return null;
-                                    return const Padding(
-                                      padding: EdgeInsets.only(top: 8.0),
-                                      child: Center(
-                                        child: CircularProgressIndicator
-                                            .adaptive(),
-                                      ),
-                                    );
-                                  });
-                                }));
-                      }))
-        ],
+                                    return githubRepositories.when(
+                                        data: (gitHubResponse) {
+                                      return RepositoryListTile(
+                                        gitHubRepositoryModel:
+                                            gitHubResponse.items[indexInPage],
+                                      );
+                                    }, error: (e, _) {
+                                      if (indexInPage != 0) return null;
+                                      return Center(child: Text(e.toString()));
+                                    }, loading: () {
+                                      if (indexInPage != 0) return null;
+                                      return const Padding(
+                                        padding: EdgeInsets.only(top: 8.0),
+                                        child: Center(
+                                          child: CircularProgressIndicator
+                                              .adaptive(),
+                                        ),
+                                      );
+                                    });
+                                  }));
+                        }))
+          ],
+        ),
       ),
     );
   }
