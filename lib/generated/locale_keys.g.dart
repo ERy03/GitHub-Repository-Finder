@@ -14,5 +14,10 @@ abstract class  LocaleKeys {
   static const appLanguage = 'appLanguage';
   static const lightMode = 'lightMode';
   static const darkMode = 'darkMode';
+  static const noRepositories = 'noRepositories';
+  static const somethingWentWrong = 'somethingWentWrong';
+  static const rateLimitExceeded = 'rateLimitExceeded';
+  static const serviceUnavailable = 'serviceUnavailable';
+  static const networkError = 'networkError';
 
 }

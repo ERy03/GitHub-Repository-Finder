@@ -7,8 +7,9 @@ class FindPrompt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 100.0),
+      padding: EdgeInsets.only(bottom: height * 0.13),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
