@@ -12,5 +12,9 @@
   "appLanguage": "アプリの言語",
   "lightMode": "ライトモード",
   "darkMode": "ダークモード",
-  "noRepositories": "リポジトリがありません。"
+  "noRepositories": "リポジトリがありません。",
+  "somethingWentWrong": "問題が発生しました。",
+  "rateLimitExceeded": "レート制限を超えました。しばらくしてからもう一度お試しください",
+  "serviceUnavailable": "サーバーでエラーが発生しています。",
+  "networkError": "ネットワークエラー: サーバーに接続できません"
 }
