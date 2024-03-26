@@ -1,15 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:github_repository_finder/generated/locale_keys.g.dart';
+import 'package:github_repository_finder/presentation/components/shared/bot_padding.dart';
 
 class NoGitHubRepositoriesFound extends StatelessWidget {
   const NoGitHubRepositoriesFound({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return Padding(
-      padding: EdgeInsets.only(bottom: height * 0.12),
+    return BotPadding(
       child: Center(
           child: Text(
         LocaleKeys.noRepositories.tr(),
