@@ -31,10 +31,10 @@ class _CustomSearchBarState extends ConsumerState<CustomSearchBar> {
         top: false,
         bottom: false,
         child: SearchBar(
-          elevation: MaterialStateProperty.all(1),
-          shadowColor: MaterialStateProperty.all(Colors.transparent),
+          elevation: WidgetStateProperty.all(1),
+          shadowColor: WidgetStateProperty.all(Colors.transparent),
           controller: _controller,
-          padding: const MaterialStatePropertyAll<EdgeInsets>(
+          padding: const WidgetStatePropertyAll<EdgeInsets>(
               EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
           leading: const Icon(Icons.search),
           hintText: LocaleKeys.searchRepository.tr(),

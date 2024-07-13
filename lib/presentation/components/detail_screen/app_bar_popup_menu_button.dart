@@ -25,9 +25,9 @@ class _AppBarPopupMenuButtonState extends State<AppBarPopupMenuButton> {
     return MenuAnchor(
       alignmentOffset: const Offset(-175, 0),
       style: const MenuStyle(
-        elevation: MaterialStatePropertyAll(1),
-        padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 0)),
-        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+        elevation: WidgetStatePropertyAll(1),
+        padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 0)),
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8)))),
       ),
       builder:
@@ -50,7 +50,7 @@ class _AppBarPopupMenuButtonState extends State<AppBarPopupMenuButton> {
           children: [
             MenuItemButton(
               style: const ButtonStyle(
-                minimumSize: MaterialStatePropertyAll(Size(210, 50)),
+                minimumSize: WidgetStatePropertyAll(Size(210, 50)),
               ),
               trailingIcon: Icon(
                 Icons.ios_share_outlined,
@@ -77,7 +77,7 @@ class _AppBarPopupMenuButtonState extends State<AppBarPopupMenuButton> {
             ),
             MenuItemButton(
               style: const ButtonStyle(
-                minimumSize: MaterialStatePropertyAll(Size(210, 50)),
+                minimumSize: WidgetStatePropertyAll(Size(210, 50)),
               ),
               trailingIcon: Icon(
                 Icons.public_outlined,

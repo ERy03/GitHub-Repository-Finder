@@ -25,10 +25,10 @@ class CustomAppBar extends AppBar {
             MenuAnchor(
               alignmentOffset: const Offset(-175, 0),
               style: const MenuStyle(
-                elevation: MaterialStatePropertyAll(1),
+                elevation: WidgetStatePropertyAll(1),
                 padding:
-                    MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 0)),
-                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 0)),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8)))),
               ),
               builder: (BuildContext context, MenuController controller,
@@ -51,7 +51,7 @@ class CustomAppBar extends AppBar {
                   children: [
                     MenuItemButton(
                       style: const ButtonStyle(
-                        minimumSize: MaterialStatePropertyAll(Size(210, 50)),
+                        minimumSize: WidgetStatePropertyAll(Size(210, 50)),
                       ),
                       trailingIcon: Icon(
                         Icons.translate_outlined,
@@ -71,7 +71,7 @@ class CustomAppBar extends AppBar {
                     ),
                     MenuItemButton(
                       style: const ButtonStyle(
-                        minimumSize: MaterialStatePropertyAll(Size(210, 50)),
+                        minimumSize: WidgetStatePropertyAll(Size(210, 50)),
                       ),
                       trailingIcon: Switch.adaptive(
                           value: themeModeProvider,
