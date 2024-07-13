@@ -49,6 +49,7 @@ class MarkdownContent extends ConsumerWidget {
                     },
                     imageUrl: uri.toString(),
                     errorWidget: (_, url, dynamic __) {
+                      // using jovial svg in case image is an svg
                       return ScalableImageWidget.fromSISource(
                           onError: (_) {
                             return const SizedBox();
