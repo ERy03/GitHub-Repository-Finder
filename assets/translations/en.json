@@ -1,0 +1,20 @@
+{
+  "issues": "Issues",
+  "forks": "Forks",
+  "watchers": "Watchers",
+  "license": "License",
+  "viewOnGitHub": "View on GitHub",
+  "shareVia": "Share via...",
+  "none": "None",
+  "find": "Find your stuff.",
+  "searchGH": "Search all of GitHub for Repositories.",
+  "searchRepository": "Search Repository",
+  "appLanguage": "App Language",
+  "lightMode": "Light Mode",
+  "darkMode": "Dark Mode",
+  "noRepositories": "There aren't any repositories.",
+  "somethingWentWrong": "Something went wrong.",
+  "rateLimitExceeded": "Rate limit exceeded. Please wait and try again later",
+  "serviceUnavailable": "Service unavailable",
+  "networkError": "Network error: Failed to connect to server."
+}

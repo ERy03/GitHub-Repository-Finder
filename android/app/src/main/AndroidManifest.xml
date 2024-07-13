@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:label="github_repository_finder"
+        android:localeConfig="@xml/locales_config"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -30,4 +31,12 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+
+    <!-- For Url Launcher -->
+    <queries>
+      <!-- If your application checks for inAppBrowserView launch mode support -->
+      <intent>
+        <action android:name="android.support.customtabs.action.CustomTabsService" />
+      </intent>
+    </queries>
 </manifest>
