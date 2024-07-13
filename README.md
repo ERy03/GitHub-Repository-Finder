@@ -66,11 +66,11 @@ This is why I decided to use Jovial SVG which handles the style element as shown
 
 flutter_svg:
 
-<img src="assets/readme/flutter_svg.png" width="300" alt="example with flutter svg">
+<img src="https://raw.githubusercontent.com/ERy03/GitHub-Repository-Finder/develop/assets/readme/flutter_svg.png" width="300" alt="example with flutter svg">
 
 jovial_svg:
 
-<img src="assets/readme/jovial_svg.png" width="300" alt="example with jovial svg">
+<img src="https://raw.githubusercontent.com/ERy03/GitHub-Repository-Finder/develop/assets/readme/jovial_svg.png" width="300" alt="example with jovial svg">
 
 
 ## Easy Localization
