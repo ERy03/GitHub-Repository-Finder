@@ -46,6 +46,9 @@ dependencies:
   easy_localization: ^3.0.7
   app_settings: ^5.1.1
   shared_preferences: ^2.2.3
+  flutter_markdown: ^0.7.1
+  markdown: ^7.2.2
+  jovial_svg: ^1.1.21
 
 dev_dependencies:
   flutter_test:
