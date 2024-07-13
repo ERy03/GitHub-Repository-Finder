@@ -4,6 +4,7 @@ import 'package:github_repository_finder/domain/github_repository_model.dart';
 import 'package:github_repository_finder/enums/enums.dart';
 import 'package:github_repository_finder/generated/locale_keys.g.dart';
 import 'package:github_repository_finder/presentation/components/detail_screen/app_bar_popup_menu_button.dart';
+import 'package:github_repository_finder/presentation/components/detail_screen/markdown_content.dart';
 import 'package:github_repository_finder/presentation/components/detail_screen/repository_detail_tile.dart';
 import 'package:github_repository_finder/presentation/components/shared/repository_overview.dart';
 
@@ -84,7 +85,11 @@ class RepositoryDetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
+            // Displaying repository's readme
+            MarkdownContent(
+                repo: gitHubRepositoryModel.name,
+                owner: gitHubRepositoryModel.owner.login)
           ],
         ),
       ),
