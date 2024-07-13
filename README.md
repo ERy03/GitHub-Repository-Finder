@@ -56,6 +56,7 @@ Conform to Material Design
 - [jovial_svg: ^1.1.21](https://pub.dev/packages/jovial_svg)
 
 ## Issues
+
 Not being able to display SVG in Flutter markdown.
 https://github.com/flutter/flutter/issues/87857
 
@@ -66,12 +67,11 @@ This is why I decided to use Jovial SVG which handles the style element as shown
 
 flutter_svg:
 
-<img src="https://raw.githubusercontent.com/ERy03/GitHub-Repository-Finder/develop/assets/readme/flutter_svg.png" width="300" alt="example with flutter svg">
+![example with flutter svg](https://raw.githubusercontent.com/ERy03/GitHub-Repository-Finder/develop/assets/readme/flutter_svg.png)
 
 jovial_svg:
 
-<img src="https://raw.githubusercontent.com/ERy03/GitHub-Repository-Finder/develop/assets/readme/jovial_svg.png" width="300" alt="example with jovial svg">
-
+![example with jovial svg](https://raw.githubusercontent.com/ERy03/GitHub-Repository-Finder/develop/assets/readme/jovial_svg.png)
 
 ## Easy Localization
 
