@@ -51,6 +51,26 @@ Conform to Material Design
 - [easy_localization: ^3.0.7](https://pub.dev/packages/easy_localization)
 - [app_settings: ^5.1.1](https://pub.dev/packages/app_settings)
 - [shared_preferences: ^2.2.3](https://pub.dev/packages/shared_preferences)
+- [flutter_markdown: ^0.7.3](https://pub.dev/packages/flutter_markdown)
+- [markdown: ^7.2.2](https://pub.dev/packages/markdown)
+- [jovial_svg: ^1.1.21](https://pub.dev/packages/jovial_svg)
+
+## Issues
+Not being able to display SVG in Flutter markdown.
+https://github.com/flutter/flutter/issues/87857
+
+Flutter SVG not displaying when it has a `<style>` element
+https://github.com/dnfield/flutter_svg/issues/105
+
+This is why I decided to use Jovial SVG which handles the style element as shown below. Not perfect but better.
+
+flutter_svg:
+
+<img src="assets/readme/flutter_svg.png" width="300" alt="example with flutter svg">
+
+jovial_svg:
+
+<img src="assets/readme/jovial_svg.png" width="300" alt="example with jovial svg">
 
 
 ## Easy Localization
