@@ -40,19 +40,18 @@ Conform to Material Design
 
 ## Packages
 
-- [Flutter_svg 2.0.9](https://pub.dev/packages/flutter_svg)
-- [intl 0.18.1](https://pub.dev/packages/intl)
-- [dio ^5.4.0](https://pub.dev/packages/dio)
-- [flutter_riverpod: ^2.4.10](https://pub.dev/packages/flutter_riverpod)
-- [riverpod_annotation: ^2.3.4](https://pub.dev/packages/riverpod_annotation)
+- [Flutter_svg ^2.0.10+1](https://pub.dev/packages/flutter_svg)
+- [intl ^0.19.0](https://pub.dev/packages/intl)
+- [dio ^5.5.0+1](https://pub.dev/packages/dio)
+- [flutter_riverpod: ^2.5.1](https://pub.dev/packages/flutter_riverpod)
+- [riverpod_annotation: ^2.3.5](https://pub.dev/packages/riverpod_annotation)
 - [cached_network_image: ^3.3.1](https://pub.dev/packages/cached_network_image)
-- [url_launcher: ^6.2.4](https://pub.dev/packages/url_launcher)
-- [share_plus: ^7.2.2](https://pub.dev/packages/share_plus)
-- [easy_localization: ^3.0.4](https://pub.dev/packages/easy_localization)
+- [url_launcher: ^6.3.0](https://pub.dev/packages/url_launcher)
+- [share_plus: ^9.0.0](https://pub.dev/packages/share_plus)
+- [easy_localization: ^3.0.7](https://pub.dev/packages/easy_localization)
 - [app_settings: ^5.1.1](https://pub.dev/packages/app_settings)
-- [shared_preferences: ^2.2.2](https://pub.dev/packages/shared_preferences)
+- [shared_preferences: ^2.2.3](https://pub.dev/packages/shared_preferences)
 
-intl uses version 0.18.1 because intl is pinned to version 0.18.1 by flutter_localizations from the flutter SDK.
 
 ## Easy Localization
 
