@@ -6,7 +6,7 @@ import 'package:github_repository_finder/domain/github_repository_owner.dart';
 import 'package:github_repository_finder/domain/github_repository_response_model.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockDio extends Mock implements Dio {}
+import '../mocks.dart';
 
 void main() {
   late GitHubRepositoriesRepository repository;
