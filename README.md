@@ -57,6 +57,7 @@ Conform to Material Design
 - [markdown: ^7.2.2](https://pub.dev/packages/markdown)
 - [jovial_svg: ^1.1.21](https://pub.dev/packages/jovial_svg)
 - [flutter_native_splash: ^2.4.1](https://pub.dev/packages/flutter_native_splash)
+- [flutter_launcher_icons: ^0.13.1](https://pub.dev/packages/flutter_launcher_icons)
 
 ## Issues
 
