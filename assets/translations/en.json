@@ -16,5 +16,6 @@
   "somethingWentWrong": "Something went wrong.",
   "rateLimitExceeded": "Rate limit exceeded. Please wait and try again later",
   "serviceUnavailable": "Service unavailable",
-  "networkError": "Network error: Failed to connect to server."
+  "networkError": "Network error: Failed to connect to server.",
+  "notFound": "Not Found"
 }
