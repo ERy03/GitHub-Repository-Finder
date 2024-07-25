@@ -19,5 +19,6 @@ abstract class  LocaleKeys {
   static const rateLimitExceeded = 'rateLimitExceeded';
   static const serviceUnavailable = 'serviceUnavailable';
   static const networkError = 'networkError';
+  static const notFound = 'notFound';
 
 }

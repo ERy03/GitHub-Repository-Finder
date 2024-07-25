@@ -16,5 +16,6 @@
   "somethingWentWrong": "問題が発生しました。",
   "rateLimitExceeded": "レート制限を超えました。しばらくしてからもう一度お試しください",
   "serviceUnavailable": "サーバーでエラーが発生しています。",
-  "networkError": "ネットワークエラー: サーバーに接続できません"
+  "networkError": "ネットワークエラー: サーバーに接続できません",
+  "notFound": "見つかりませんでした"
 }
