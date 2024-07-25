@@ -55,6 +55,7 @@ Conform to Material Design
 - [shared_preferences: ^2.2.3](https://pub.dev/packages/shared_preferences)
 - [flutter_markdown: ^0.7.3](https://pub.dev/packages/flutter_markdown)
 - [markdown: ^7.2.2](https://pub.dev/packages/markdown)
+- [mocktail: ^1.0.4](https://pub.dev/packages/mocktail)
 - [jovial_svg: ^1.1.21](https://pub.dev/packages/jovial_svg)
 - [flutter_native_splash: ^2.4.1](https://pub.dev/packages/flutter_native_splash)
 - [flutter_launcher_icons: ^0.13.1](https://pub.dev/packages/flutter_launcher_icons)
@@ -104,6 +105,12 @@ This is the expected behavior because the app is being rebooted when its setting
 
 [As explained in this comment](https://github.com/Baseflow/flutter-permission-handler/issues/509#issuecomment-1113636977)
 
+## Test
+
+Includes Units test and Widget test utilizing Mocktail.
+
+Run test with `flutter test`
+
 ## Credits
 
 - [DevIcon](https://github.com/devicons/devicon/): GitHub Icon used for App bar
@@ -112,6 +119,7 @@ This is the expected behavior because the app is being rebooted when its setting
 
 - https://codewithandrea.com/articles/flutter-riverpod-data-caching-providers-lifecycle/#caching-with-timeout
 - [Implementing pagination](https://github.com/rrousselGit/riverpod/tree/master/examples/marvel)
+- https://qiita.com/kasa_le/items/a33a607b8e6f1636be81
 
 ## Side note
 
