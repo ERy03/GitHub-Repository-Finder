@@ -31,10 +31,6 @@ class GitHubRepositoriesRepository {
         await _dio.get(url, cancelToken: cancelToken, options: option);
     final githubRepositories =
         GitHubRepositoryResponseModel.fromMap(response.data);
-    print(
-        '- - - - - GitHubRepositoriesRepository searchRepositories method - - - - -');
-    print('making api call with dio:');
-    print("total count: ${githubRepositories.totalCount}");
     return githubRepositories;
   }
 }
@@ -48,8 +44,6 @@ GitHubRepositoriesRepository gitHubRepositoriesRepository(
 @riverpod
 AsyncValue<int> gitHubRepositoryTotalCount(
     GitHubRepositoryTotalCountRef ref, String query) {
-  print('- - - - - gitHubRepositoryTotalCountProvider - - - - -');
-  print('query: $query');
   return ref
       .watch(searchRepositoriesProvider(
           pagination: GitHubPagination(page: 1, query: query)))
@@ -61,16 +55,12 @@ Future<GitHubRepositoryResponseModel> searchRepositories(
   SearchRepositoriesRef ref, {
   required GitHubPagination pagination,
 }) async {
-  print('- - - - - searchRepositoriesProvider - - - - -');
-  print('searchRepositories($pagination)');
-
   // dio object that allows cancelling http requests
   final cancelToken = CancelToken();
 
   // When the provider is destroyed, cancel the http request
   // utilized when the user scrolls very fast in the list
   ref.onDispose(() {
-    print("disposing: $pagination");
     cancelToken.cancel();
   });
 
