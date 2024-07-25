@@ -25,6 +25,8 @@ class ErrorMessages extends StatelessWidget {
 String handleDioError(DioException error) {
   if (error.response?.statusCode == 403) {
     return LocaleKeys.rateLimitExceeded.tr();
+  } else if (error.response?.statusCode == 404) {
+    return LocaleKeys.notFound.tr();
   } else if (error.response?.statusCode == 503) {
     return LocaleKeys.serviceUnavailable.tr();
   } else if (error.type == DioExceptionType.connectionError) {
