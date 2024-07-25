@@ -1,3 +1,5 @@
+<a href="https://github.com/ERy03/Github-Repository-Finder/actions"><img src="https://github.com/ERy03/Github-Repository-Finder/workflows/Check Tests/badge.svg" alt=”Build Status”></a>
+
 # Yumemi's Flutter Engineer Code Check Assignment
 
 ![github-repository-finder-recording-ezgif com-optimize](https://github.com/user-attachments/assets/538a94c7-9daf-4058-a132-bacb4f38794f)
@@ -120,10 +122,16 @@ Run test with `flutter test`
 - https://codewithandrea.com/articles/flutter-riverpod-data-caching-providers-lifecycle/#caching-with-timeout
 - [Implementing pagination](https://github.com/rrousselGit/riverpod/tree/master/examples/marvel)
 - https://qiita.com/kasa_le/items/a33a607b8e6f1636be81
+- https://medium.com/@m1nori/run-flutter-integration-tests-using-github-actions-workflow-80958948b8e4
 
 ## Side note
 
+**Routing**
+
 I would typically use GoRouter for navigation. However, because the project has simple navigation and does not require web implmentation, I just went with the Navigator widget. If you want to utilize GoRouter and implement this project for web, you would not be able to pass the `GitHubRepositoryModel` object when navigating to the detail screen because we can't encode custom objects inside the URL path.
+
+**CI/CD**
+For this project, I've only set GitHub Actions to run tests whenever there is a push. If you want to setup GitHub Actions for building this app you can follow: [this](https://github.com/subosito/flutter-action)
 
 ## Evaluation
 
