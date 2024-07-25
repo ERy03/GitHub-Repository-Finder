@@ -1,3 +1,5 @@
+<a href="https://github.com/ERy03/Github-Repository-Finder/actions"><img src="https://github.com/ERy03/Github-Repository-Finder/workflows/Check Tests/badge.svg" alt=”Build Status”></a>
+
 # Yumemi's Flutter Engineer Code Check Assignment
 
 ![github-repository-finder-recording-ezgif com-optimize](https://github.com/user-attachments/assets/538a94c7-9daf-4058-a132-bacb4f38794f)
