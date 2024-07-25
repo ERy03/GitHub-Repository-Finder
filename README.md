@@ -1,4 +1,5 @@
-# Yumemi's Flutter Engineer Code Check Assignment
+
+# Yumemi's Flutter Engineer Code Check Assignment<br><a href="https://github.com/ERy03/Github-Repository-Finder/actions"><img src="https://github.com/ERy03/Github-Repository-Finder/workflows/Check Tests/badge.svg" alt="Build Status"></a>
 
 ![github-repository-finder-recording-ezgif com-optimize](https://github.com/user-attachments/assets/538a94c7-9daf-4058-a132-bacb4f38794f)
 
@@ -55,7 +56,10 @@ Conform to Material Design
 - [shared_preferences: ^2.2.3](https://pub.dev/packages/shared_preferences)
 - [flutter_markdown: ^0.7.3](https://pub.dev/packages/flutter_markdown)
 - [markdown: ^7.2.2](https://pub.dev/packages/markdown)
+- [mocktail: ^1.0.4](https://pub.dev/packages/mocktail)
 - [jovial_svg: ^1.1.21](https://pub.dev/packages/jovial_svg)
+- [flutter_native_splash: ^2.4.1](https://pub.dev/packages/flutter_native_splash)
+- [flutter_launcher_icons: ^0.13.1](https://pub.dev/packages/flutter_launcher_icons)
 
 ## Issues
 
@@ -102,6 +106,12 @@ This is the expected behavior because the app is being rebooted when its setting
 
 [As explained in this comment](https://github.com/Baseflow/flutter-permission-handler/issues/509#issuecomment-1113636977)
 
+## Test
+
+Includes Units test and Widget test utilizing Mocktail.
+
+Run test with `flutter test`
+
 ## Credits
 
 - [DevIcon](https://github.com/devicons/devicon/): GitHub Icon used for App bar
@@ -110,10 +120,17 @@ This is the expected behavior because the app is being rebooted when its setting
 
 - https://codewithandrea.com/articles/flutter-riverpod-data-caching-providers-lifecycle/#caching-with-timeout
 - [Implementing pagination](https://github.com/rrousselGit/riverpod/tree/master/examples/marvel)
+- https://qiita.com/kasa_le/items/a33a607b8e6f1636be81
+- https://medium.com/@m1nori/run-flutter-integration-tests-using-github-actions-workflow-80958948b8e4
 
 ## Side note
 
+**Routing**
+
 I would typically use GoRouter for navigation. However, because the project has simple navigation and does not require web implmentation, I just went with the Navigator widget. If you want to utilize GoRouter and implement this project for web, you would not be able to pass the `GitHubRepositoryModel` object when navigating to the detail screen because we can't encode custom objects inside the URL path.
+
+**CI/CD**
+For this project, I've only set GitHub Actions to run tests whenever there is a push. If you want to setup GitHub Actions for building this app you can follow: [this](https://github.com/subosito/flutter-action)
 
 ## Evaluation
 

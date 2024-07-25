@@ -6,7 +6,10 @@ Color stringToHexColor(String stringColor) {
 
   String stringColorWithFF = "FF$stringColor";
 
-  Color color = Color(int.parse(stringColorWithFF, radix: 16));
-
-  return color;
+  try {
+    Color color = Color(int.parse(stringColorWithFF, radix: 16));
+    return color;
+  } catch (_) {
+    return const Color(0xFF808080);
+  }
 }
